@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/dakolech/angular-unit-testing-helpers.svg?branch=master)](https://travis-ci.org/dakolech/angular-unit-testing-helpers)
+[![devDependency Status](https://david-dm.org/dakolech/angular-unit-testing-helpers/dev-status.svg)](https://david-dm.org/dakolech/angular-unit-testing-helpers#info=devDependencies)
+
+
 # Jasmine Data Driven Tests
 
 This plugin for Jasmine 2.x allows you to easily create data driven tests.
@@ -18,33 +22,22 @@ Features include:
 - If the dataset is not well formed, informative errors are thrown to make
   fixing issues with writing data driven tests easier to debug.
 
-## Acquiring Jasmine Data Driven Tests
+## Installation:
 
-There are two ways to get Jasmine Data Driven Tests:
+  1. Download package:
 
-### Using Bower
+  ```
+  npm install jasmine-data_driven_tests
+  ```
 
-If you are using Bower to manage your JavaScript dependencies, just add this
-repository to your `bower.json` file:
+  1. Inject it to `karma.conf.js`
 
-```javascript
-{
-    "devDependencies": {
-        "jasmine": "~2.0",
-        "jasmine-data_driven_tests": "~1.0"
-    }
-}
-```
-
-Then a quick `bower install` is all you need.
-
-### Manual Installation
-
-Just download the latest or clone this repository:
-
-- Download: https://github.com/gburghardt/jasmine-data_driven_tests/archive/master.zip
-- Clone: `git clone https://github.com/gburghardt/jasmine-data_driven_tests.git`
-
+  ```javascript
+  files: [
+    'node_modules/jasmine-data_driven_tests/src/all.js',
+    ...
+  ],
+  ```
 ## Getting Started
 
 Simply include `src/all.js` after the source files for Jasmine. Now, you have
