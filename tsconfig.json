@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+        "baseUrl": "",
+        "declaration": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "lib": [
+            "es6",
+            "dom"
+        ],
+        "mapRoot": "./",
+        "module": "amd",
+        "outDir": "./dist",
+        "sourceMap": true,
+        "target": "es5",
+        "types": ["jasmine"]
+        // "typeRoots": [
+        //     "../node_modules/@types"
+        // ]
+    },
+    "files": [
+        "src/all.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}

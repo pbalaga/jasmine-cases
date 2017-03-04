@@ -1,24 +1,20 @@
-"use strict";
+var root = this;
+let toString = Object.prototype.toString;
 
-(function() {
-
-var root = this,
-    toString = Object.prototype.toString;
-
-function all(description, dataset, fn) {
-	return createDataDrivenSpecs(root.it, description, dataset, fn, true);
+export function all(description, dataset, fn) {
+	return createDataDrivenSpecs(it, description, dataset, fn, true);
 }
 
-function xall(description, dataset, fn) {
-	return createDataDrivenSpecs(root.xit, description, dataset, fn, true);
+export function xall(description, dataset, fn) {
+	return createDataDrivenSpecs(xit, description, dataset, fn, true);
 }
 
-function using(description, dataset, fn) {
-	return createDataDrivenSpecs(root.describe, description, dataset, fn, false);
+export function using(description, dataset, fn) {
+	return createDataDrivenSpecs(describe, description, dataset, fn, false);
 }
 
-function xusing(description, dataset, fn) {
-	return createDataDrivenSpecs(root.xdescribe, description, dataset, fn, false);
+export function xusing(description, dataset, fn) {
+	return createDataDrivenSpecs(xdescribe, description, dataset, fn, false);
 }
 
 function createSyncDataDrivenFn(args, fn) {
@@ -37,7 +33,7 @@ function createAsyncDataDrivenFn(args, fn) {
 
 function createVariantDescription(description, args, index) {
 	var variantDesc = description + " (Variant #" + index + " <",
-	    i = 0, length = args.length, x;
+		i = 0, length = args.length, x;
 
 	for (i; i < length; i++) {
 		if (i > 0) {
@@ -62,19 +58,19 @@ function createVariantDescription(description, args, index) {
 
 function createDataDrivenSpecs(specProvider, description, dataset, fn, isAsyncAllowed) {
 	var i = 0,
-	    length = 0,
-	    specs = [],
-	    args,
-	    maxArgCount = 0,
-	    variantDesc,
-	    suite;
+		length = 0,
+		specs = [],
+		args,
+		maxArgCount = 0,
+		variantDesc,
+		suite;
 
 	if (!dataset || !isArray(dataset) || dataset.length === 0) {
 		throw error("Jasmine.ArgumentsMissingError", "No arguments for a data-driven test were provided ({0})", description);
 	}
 
 	// Validate the dataset first
-	for (i, length = dataset.length; i < length; i++) {
+	for (length = dataset.length; i < length; i++) {
 		args = isArray(dataset[i]) ? dataset[i] : [dataset[i]];
 		maxArgCount = maxArgCount || args.length;
 		variantDesc = createVariantDescription(description, args, i);
@@ -108,7 +104,7 @@ function createDataDrivenSpecs(specProvider, description, dataset, fn, isAsyncAl
 	}
 
 	// Create the suite and specs
-	suite = root.describe(description, function() {
+	suite = describe(description, function () {
 		for (i = 0, length = specs.length; i < length; i++) {
 			specProvider(specs[i].description, specs[i].fn);
 		}
@@ -121,12 +117,11 @@ function isArray(x) {
 	return toString.call(x) === "[object Array]";
 }
 
-function error(name, message) {
-	var args = Array.prototype.slice.call(arguments, 2),
-	    error;
+function error(name, message, ...args: any[]) {
+	let error;
 
 	if (args && args.length) {
-		message = message.replace(/\{(\d+)\}/g, function(match, index) {
+		message = message.replace(/\{(\d+)\}/g, function (match, index) {
 			return args[Number(index)] || "";
 		});
 	}
@@ -136,10 +131,3 @@ function error(name, message) {
 
 	return error;
 }
-
-root.all = all;
-root.xall = xall;
-root.using = using;
-root.xusing = xusing;
-
-}).call(this);
